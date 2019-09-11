@@ -8,14 +8,19 @@ import { LinkService } from './link.service';
 import { RouterModule, Routes } from '@angular/router';
 import { NotFoundComponent } from './not-found.component';
 import { MainPageComponent } from './mainpage.component';
-import { HeaderService } from './header.service'; 
+import { HeaderService } from './header.service';
 import {HttpClientModule} from '@angular/common/http';
 import { ClipboardModule } from 'ngx-clipboard';
+import { LiveService } from './live-matches.service';
+import { LiveComponent } from './live-matches.component';
+import { ReactiveFormsModule } from '@angular/forms';
+
+
 
 const appRoutes: Routes = [
   { path: 'fixture/:fixture_id', component: AppComponent },
+  { path: 'admin/live', component: LiveComponent },
   { path: '**', component: NotFoundComponent }
-  
 ];
 
 @NgModule({
@@ -24,17 +29,19 @@ const appRoutes: Routes = [
     HeaderComponent,
     LinkComponent,
     MainPageComponent,
-    NotFoundComponent
+    NotFoundComponent,
+    LiveComponent,
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
     ClipboardModule,
+    ReactiveFormsModule,
     RouterModule.forRoot(appRoutes)
 
   ],
-  providers: [LinkService,HeaderService],
+  providers: [LinkService, HeaderService, LiveService],
   exports: [],
   bootstrap: [MainPageComponent]
 })

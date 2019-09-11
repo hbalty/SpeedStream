@@ -24,14 +24,14 @@
         <td>  {{ link.upvotes }} <i style="font-size: 12px; color: green" class="material-icons">
                 thumb_up
                 </i>  </td>
-        <td> {{ link.downvotes }} <i style="font-size: 12px; color: red" class="material-icons">
+        <td> {{ link.downvotes }} <i style="font-size: 12px; color: #EA3D3D" class="material-icons">
                 thumb_down
                 </i> </td>
         <td> 
-            <button type="button" class="btn-cp" ngxClipboard [cbContent]="'link.id'" (cbOnSuccess)="copied($event)" id="link_{{link.id}}" (click)="copyLink($event, link)"> 
-                نسخ الرابط 
+            <button type="button" class="btn-cp" ngxClipboard [cbContent]="link.id" (cbOnSuccess)="copied($event)" id="link_{{link.id}}" (click)="copyLink($event, link)"> 
+                <i style="font-size: 10px;" class="material-icons"> filter_none </i> copy
             </button> 
-            <a class="button" href="{{ link.url}}" target="_blank"> مشاهدة </a> 
+            <button class="btn-cp" (click)="redirect($event,link)" target="_blank">  <i style="font-size: 10px;" class="material-icons"> launch </i> watch </button> 
         </td>
         
     </tr>

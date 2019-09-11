@@ -26,7 +26,7 @@ export class HeaderService{
         return this.httpClient.get<Fixture>('http://localhost:3000/fixture/id/' + fixture_id,{
             headers: {
                 'content-type': 'application/json',
-                'authorization': 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1aWQiOiI1YzMwYjdkMDA2MTFhYjc4YzY3ZjQ0ODQiLCJpYXQiOjE1NDY2OTY2NTd9.7GaVEL7QGw-U8LqYMdSheneusIE3i84pT1iDsHlS1rA',
+                'authorization': 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1aWQiOiI1YmU1YmVlMTcyZGMwYTFlYWNlNmY3NjgiLCJpYXQiOjE1NDE3ODMyNjV9.28HNMH17Krt6of39wvKC3kD3XDA9hCWlO2HLMBlIOdE',
             }
         }).toPromise();
     }

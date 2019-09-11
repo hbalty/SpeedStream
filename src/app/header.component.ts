@@ -13,13 +13,13 @@ export class HeaderComponent implements OnInit{
   }
   
   fixture_id ;
-  homeTeamLogo ; 
+  homeTeamLogo ;
   awayTeamLogo  ;
   awayTeamName ;
   homeTeamName  ;
   goalsHomeTeam ;
   goalsAwayTeam  ;
-  elapsed ; 
+  elapsed ;
 
   ngOnInit(){
     this.fixture_id = this.route.snapshot.paramMap.get('fixture_id'); 

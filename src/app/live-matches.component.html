@@ -1,0 +1,34 @@
+<nav class="navbar navbar-toggleable-md navbar-inverse bg-inverse fixed-top">
+    <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse"  aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+    <a class="navbar-brand"> Speed Goals admin</a> <br>
+</nav>
+<div class="container">
+        <h2> Live matches </h2>
+        <table class="table">
+            <tr> 
+                <th> id </th>
+                <th> home team </th>
+                <th> away team </th>
+                <th> elapsed </th>
+                <th> action </th> 
+            </tr>
+            <tr *ngFor="let match of matches">
+                <td> {{ match.fixture_id }} </td>
+                <td> <img *ngIf="match.homeTeam.logo" style="max-width: 20px" src="{{ match.homeTeam.logo }}"/> <br> <small> {{ match.homeTeam.team_name }} </small> </td>
+                <td> <img *ngIf="match.homeTeam.logo" style="max-width: 20px" src="{{ match.awayTeam.logo }}"/> <br> <small> {{ match.awayTeam.team_name }} </small></td>
+                <td> {{ match.elapsed }}" </td> 
+                <td> <button class="btn btn-info"> show links </button>  <button class="btn btn-success"> add link </button> </td>
+            </tr>
+        </table>
+</div>
+
+
+
+
+                
+
+
+
+

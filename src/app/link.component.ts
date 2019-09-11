@@ -1,32 +1,39 @@
 import { Component, Input } from '@angular/core';
 import { LinkService } from './link.service';
 import { ClipboardService } from 'ngx-clipboard';
+import {ActivatedRoute} from '@angular/router';
+
 @Component({
-  selector: 'app-link',
-  templateUrl: './link.component.html',
-  styleUrls: ['./link.component.css']
+    selector: 'app-link',
+    templateUrl: './link.component.html',
+    styleUrls: ['./link.component.css']
 })
 export class LinkComponent {
-
-    
-    links = []; 
-    myDataArray = [
-        1,
-        2,
-        3,
-        4
-    ]
-    constructor(_linkService : LinkService, private _clipboardService : ClipboardService){
-        this.links = _linkService.getLinks() ; 
+    private fixture_id ;
+    links ;
+    constructor(private route: ActivatedRoute, _linkService: LinkService, private _clipboardService : ClipboardService){
+        this.fixture_id = this.route.snapshot.paramMap.get('fixture_id');
+        _linkService.getLinks(this.fixture_id).then(link => {
+            this.links = link;
+            console.log(this.links)
+        }).catch(err => {
+            console.log('error');
+        }) ;
     }
 
 
-    copyLink($event,link){
+    redirect($event, link) {
+        location.href = link.url ;
+    }
+
+
+    copyLink($event,link) {
         $event.preventDefault();
-        this._clipboardService.copyFromContent(link.url)
+        let url = link.url ;
+        this._clipboardService.copyFromContent(url);
     }
 
-    copied($event){
-        alert('تم نقل الرابط ')
+    copied($event) {
+        alert('تم نقل الرابط ');
     }
 }

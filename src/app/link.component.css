@@ -26,6 +26,7 @@
     background-color: transparent ;
     border-color: green; 
     padding: 2px;
+    margin: 2px;
 }
 
 .btn-cp:hover{
