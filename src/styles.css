@@ -1,0 +1,30 @@
+/* You can add global styles to this file, and also import other style files */
+
+* {
+    padding: 0; 
+    margin: 0;
+}
+
+h1,h2,h3,h4{
+    font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif
+}
+
+.logo-text{
+    font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif; 
+    color: white;
+    font-size: 80%;
+    padding-left: 10px;
+}
+
+.logo{
+    max-width: 59px;
+    padding-top: 10px;
+    padding-left: 10px;
+}
+
+.nav{
+    background-color: #EA3D3D; 
+    height: 70px;
+}
+html, body { height: 100%; }
+body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }

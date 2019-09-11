@@ -1,0 +1,53 @@
+.subtitle_block{
+    margin: 3px;
+}
+.subtitle_block > h4{
+    color: #646464;  
+    padding: 6px;
+}
+
+.subtitle_block > i {
+    padding: 5px; 
+    color: #646464; 
+    float: left;
+}
+
+.links{
+    width: 100%;
+    text-align: center;
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif
+}
+
+.links tr:first{
+    padding-bottom: 10px;
+}
+
+.btn-cp{
+    background-color: transparent ;
+    border-color: green; 
+    padding: 2px;
+}
+
+.btn-cp:hover{
+    border: transparent; 
+    color: white; 
+    background-color: green; 
+}
+
+tr {
+    margin: 100px;
+    height: 40px;
+}
+
+.links th{
+    font-size: 10px ;
+
+}
+
+.links tr{
+    font-size: 10px ;
+}
+
+a{
+    color: black ;
+}

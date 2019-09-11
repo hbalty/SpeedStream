@@ -1,0 +1,21 @@
+<div class="container"> 
+    <table class="header">
+        <tr>
+            <td> <img *ngIf="homeTeamLogo" class="teamLogo" [src]="homeTeamLogo"/> </td>
+            <td> <p class="score"> {{ goalsHomeTeam }} - {{ goalsAwayTeam }} </p> </td>
+            <td><img *ngIf="homeTeamLogo" class="teamLogo" [src]="awayTeamLogo"/> </td>
+        </tr>
+        <tr>
+                <td> </td>
+                <td> </td>
+                <td> </td>
+        </tr>
+        <tr>
+                <td>  <h3 class="teamName"> {{ homeTeamName | uppercase }} </h3> </td>
+                <td></td>
+                <td> <h3 class="teamName"> {{ awayTeamName | uppercase}}</h3> </td>
+        </tr>
+    </table>
+    
+    
+</div>

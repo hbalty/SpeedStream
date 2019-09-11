@@ -1,0 +1,26 @@
+.teamLogo{
+    max-width: 50px;
+}
+
+.header{
+    padding-top: 5%;
+    width: 100%; 
+    margin-left: auto;
+    margin-right: auto;
+    text-align: center
+}
+
+.container{
+    background-color: #F8F8F8;
+    padding-bottom: 10px;
+}
+
+.teamName{
+    color: #626262;
+    font-size: 60%;
+}
+
+.score{
+    font-size: 30px;
+    letter-spacing: 5px;
+}
