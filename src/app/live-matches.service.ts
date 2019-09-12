@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
+import { FormControl } from '@angular/forms';
 
 interface Fixture {
     fixtures: {
@@ -18,7 +19,6 @@ interface Fixture {
 @Injectable()
 export class LiveService {
     private closeResult: string;
-
     constructor(private httpClient: HttpClient){
     }
 

@@ -1,0 +1,20 @@
+<form [formGroup]="linkForm" (ngSubmit)="onSubmit()">
+    <label>
+      Url
+      <input type="text" formControlName="url"/>
+    </label>
+    <label>
+        provider
+        <input type="text" formControlName="provider"/>
+    </label>
+    <label>
+          compatibility
+        <div formGroupName="compatibility">
+          <input type="checkbox" name="compatibility" formControlName="phone"> Phone
+          <input type="checkbox" name="compatibility" formControlName="tablet"> Tablet
+          <input type="checkbox" name="compatibility" formControlName="pc"> PC
+        </div>
+    </label>
+    <input type="submit"/>
+
+  </form> 

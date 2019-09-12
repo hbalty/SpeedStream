@@ -1,27 +1,25 @@
 import { Injectable } from '@angular/core';
 import {HttpClient} from '@angular/common/http';
 
-interface Fixture{
-    fixtures : {
-        homeTeamLogo : String,
-        awayTeamLogo : String,
-        awayTeamName : String,
-        homeTeamName : String,
-        goalsHomeTeam : String,
-        goalsAwayTeam  : String,
-        elapsed : String,
-    }
-
+interface Fixture {
+    fixtures: {
+        fixture_id: String;
+        homeTeamLogo: String;
+        awayTeamLogo: String;
+        awayTeamName: String;
+        homeTeamName: String;
+        goalsHomeTeam: String;
+        goalsAwayTeam: String
+        elapsed: String;
+    };
 }
 
 
 @Injectable()
-export class HeaderService{
-    
+export class ApiGatewayService{
     constructor(private httpClient: HttpClient){
-        
     }
-    
+
     getFixture(fixture_id){
         return this.httpClient.get<Fixture>('http://localhost:3000/fixture/id/' + fixture_id,{
             headers: {
@@ -30,4 +28,15 @@ export class HeaderService{
             }
         }).toPromise();
     }
+
+    addLink(link){
+        return this.httpClient.post('http://localhost:3000/add/link/', link,{
+            headers: {
+                'content-type': 'application/json',
+            },
+        }).toPromise();
+    }
+
+
+    
 }

@@ -8,6 +8,6 @@ import { Component, OnInit } from '@angular/core';
 })
 export class AppComponent{
   title = 'Speed Stream';
-  fixture_id ; 
+  fixture_id ;
 
 }

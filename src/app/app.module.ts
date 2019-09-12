@@ -9,12 +9,14 @@ import { RouterModule, Routes } from '@angular/router';
 import { NotFoundComponent } from './not-found.component';
 import { MainPageComponent } from './mainpage.component';
 import { HeaderService } from './header.service';
-import {HttpClientModule} from '@angular/common/http';
+import { HttpClientModule } from '@angular/common/http';
 import { ClipboardModule } from 'ngx-clipboard';
 import { LiveService } from './live-matches.service';
 import { LiveComponent } from './live-matches.component';
 import { ReactiveFormsModule } from '@angular/forms';
-
+import { NgbModule, NgbModal } from '@ng-bootstrap/ng-bootstrap';
+import { LinkAddComponent } from './link-add/link-add.component';
+import { ApiGatewayService } from './api-gateway.service';
 
 
 const appRoutes: Routes = [
@@ -31,6 +33,7 @@ const appRoutes: Routes = [
     MainPageComponent,
     NotFoundComponent,
     LiveComponent,
+    LinkAddComponent,
   ],
   imports: [
     BrowserModule,
@@ -38,10 +41,11 @@ const appRoutes: Routes = [
     HttpClientModule,
     ClipboardModule,
     ReactiveFormsModule,
+    NgbModule,
     RouterModule.forRoot(appRoutes)
 
   ],
-  providers: [LinkService, HeaderService, LiveService],
+  providers: [LinkService, HeaderService, LiveService, NgbModal,ApiGatewayService],
   exports: [],
   bootstrap: [MainPageComponent]
 })
