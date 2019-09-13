@@ -1,0 +1,36 @@
+<form class="form-group" [formGroup]="articleForm" (ngSubmit)="onSubmit()">
+    <label>
+        url
+        <input type="text" formControlName="url"/>
+    </label>  
+  <label>
+      title
+      <input type="text" formControlName="title"/>
+    </label>
+    <label>
+        picture url
+        <input type="text" formControlName="url"/>
+    </label>
+    <label>
+        language
+        <select>
+          <option value="AR"> AR </option>
+          <option value="EN"> EN </option>
+          <option value="FR"> FR </option>
+        </select>
+    </label>
+    <label>
+        caption
+        <textarea formControlName="caption"></textarea>
+    </label>
+    <label>
+          Is live streaming
+          <input type="checkbox" name="compatibility" formControlName="isLive"> 
+    </label>
+    <label>
+        Source
+    <input type="text" name="source" formControlName="source"> 
+  </label>
+    <input type="submit"/>
+
+  </form> 

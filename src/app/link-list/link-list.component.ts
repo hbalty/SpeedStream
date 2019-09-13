@@ -23,10 +23,10 @@ export class LinkListComponent implements OnInit {
   }
 
 
-  deleteLink(link_id){
+  deleteLink(link_id) {
     this.apigateway.deleteLink(link_id).then((response) => {
-      
-    })
+      alert('deleted')
+    });
   }
 
 }

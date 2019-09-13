@@ -23,16 +23,16 @@ export class LinkAddComponent implements OnInit {
 
 
   onSubmit() {
-    let link = this.linkForm.value ;
+    const link = this.linkForm.value ;
     link.fixture_id = this.fixture_id;
     this.apiGateway.addLink(link).then(data => {
       console.log(data);
-    })
+    });
   }
 
   ngOnInit() {
     this.apiGateway.getFixture(this.fixture_id).then((data) => {
-    })
+    });
   }
 
 }

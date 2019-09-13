@@ -23,7 +23,7 @@ export class LiveComponent {
     open(content, selected_fixture) {
         console.log(selected_fixture);
         this.selected_match = selected_fixture;
-        this.modalService.open(content, {ariaLabelledBy: 'sl'}).result.then((result) => {
+        this.modalService.open(content, {ariaLabelledBy: 'modal-basic-title'}).result.then((result) => {
         }, (reason) => {
         });
     }

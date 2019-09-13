@@ -11,6 +11,6 @@
       <td> {{ link._id | excerpt:5 }} </td>
       <td> {{ link.provider }} </td>
       <td> {{ link.url }}  </td>
-      <td> <button  class="btn btn-sm btn-danger" type="button" (click)="deleteLink()"> delete </button>  </td>
+      <td> <button  class="btn btn-sm btn-danger" type="button" (click)="deleteLink(link._id)"> delete </button>  </td>
     </tr> 
 </table>

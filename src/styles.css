@@ -4,6 +4,7 @@
 * {
     padding: 0; 
     margin: 0;
+    box-sizing: border-box;
 }
 
 h1,h2,h4{
@@ -18,14 +19,18 @@ h1,h2,h4{
 }
 
 .logo{
-    max-width: 59px;
-    padding-top: 10px;
+    max-height: 50px;
+    padding-top: 5px;
     padding-left: 10px;
+    display: block;
 }
 
+ul{
+    margin-bottom: 5px;   
+}
 .nav{
     background-color: #EA3D3D; 
-    height: 70px;
+    height: 100px;
 }
 html, body { height: 100%; }
 body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }

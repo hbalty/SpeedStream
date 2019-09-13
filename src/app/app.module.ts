@@ -19,11 +19,14 @@ import { LinkAddComponent } from './link-add/link-add.component';
 import { ApiGatewayService } from './api-gateway.service';
 import { LinkListComponent } from './link-list/link-list.component';
 import { ExerptPipe } from './exerpt.pipe';
+import { NewsComponent } from './news/news.component';
+import { ArticleAddComponent } from './article-add/article-add.component';
 
 
 const appRoutes: Routes = [
   { path: 'fixture/:fixture_id', component: AppComponent },
   { path: 'admin/live', component: LiveComponent },
+  { path: 'admin/news', component: NewsComponent },
   { path: '**', component: NotFoundComponent }
 ];
 
@@ -38,6 +41,8 @@ const appRoutes: Routes = [
     LinkAddComponent,
     LinkListComponent,
     ExerptPipe,
+    NewsComponent,
+    ArticleAddComponent,
   ],
   imports: [
     BrowserModule,
