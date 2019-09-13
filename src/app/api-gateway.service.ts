@@ -14,6 +14,24 @@ interface Fixture {
     };
 }
 
+interface Link {
+    fixture_id: string;
+    url: String;
+    provider: String;
+    upvotes: Number;
+    downvotes: Number;
+    compatibility: {
+        phone: Boolean;
+        tablet: Boolean;
+        pc: Boolean;
+    }
+}
+
+const HEADERS = {
+    'content-type': 'application/json',
+    'authorization': 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1aWQiOiI1YmU1YmVlMTcyZGMwYTFlYWNlNmY3NjgiLCJpYXQiOjE1NDE3ODMyNjV9.28HNMH17Krt6of39wvKC3kD3XDA9hCWlO2HLMBlIOdE',
+}; 
+
 
 @Injectable()
 export class ApiGatewayService{
@@ -21,22 +39,27 @@ export class ApiGatewayService{
     }
 
     getFixture(fixture_id){
-        return this.httpClient.get<Fixture>('http://localhost:3000/fixture/id/' + fixture_id,{
-            headers: {
-                'content-type': 'application/json',
-                'authorization': 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1aWQiOiI1YmU1YmVlMTcyZGMwYTFlYWNlNmY3NjgiLCJpYXQiOjE1NDE3ODMyNjV9.28HNMH17Krt6of39wvKC3kD3XDA9hCWlO2HLMBlIOdE',
-            }
+        return this.httpClient.get<Fixture>('http://localhost:3000/fixture/id/' + fixture_id, {
+            headers: HEADERS
         }).toPromise();
     }
 
     addLink(link){
         return this.httpClient.post('http://localhost:3000/add/link/', link,{
-            headers: {
-                'content-type': 'application/json',
-            },
+            headers: HEADERS
+        }).toPromise();
+    }
+
+    deleteLink(link_id) {
+        return this.httpClient.get('http://localhost:3000/delete/link/' + link_id,{
+            headers: HEADERS
         }).toPromise();
     }
 
 
-    
+    getLinks(fixture_id) {
+        return this.httpClient.get<Link>('http://localhost:3000/get/link/' + fixture_id,{
+            headers: HEADERS
+        }).toPromise();
+    }
 }

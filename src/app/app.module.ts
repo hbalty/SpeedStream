@@ -17,6 +17,8 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { NgbModule, NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { LinkAddComponent } from './link-add/link-add.component';
 import { ApiGatewayService } from './api-gateway.service';
+import { LinkListComponent } from './link-list/link-list.component';
+import { ExerptPipe } from './exerpt.pipe';
 
 
 const appRoutes: Routes = [
@@ -34,6 +36,8 @@ const appRoutes: Routes = [
     NotFoundComponent,
     LiveComponent,
     LinkAddComponent,
+    LinkListComponent,
+    ExerptPipe,
   ],
   imports: [
     BrowserModule,

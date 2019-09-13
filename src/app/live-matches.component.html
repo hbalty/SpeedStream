@@ -19,7 +19,7 @@
                 <td> <img *ngIf="match.homeTeam.logo" style="max-width: 20px" src="{{ match.homeTeam.logo }}"/> <br> <small> {{ match.homeTeam.team_name }} </small> </td>
                 <td> <img *ngIf="match.homeTeam.logo" style="max-width: 20px" src="{{ match.awayTeam.logo }}"/> <br> <small> {{ match.awayTeam.team_name }} </small></td>
                 <td> {{ match.elapsed }}" </td> 
-                <td> <button class="btn btn-sm btn-info"> show links </button>  <button class="btn btn-sm btn-success" (click)="open(content,match.fixture_id)"> add link </button> </td>
+                <td> <button class="btn btn-sm btn-info" (click)="open(showlink,match.fixture_id)"> show links </button>  <button class="btn btn-sm btn-success" (click)="open(content,match.fixture_id)"> add link </button> </td>
             </tr>
         </table>
 
@@ -34,9 +34,24 @@
                 <app-link-add fixture_id="{{selected_match}}"></app-link-add>
             </div>
             <div class="modal-footer">
-              <button type="button" class="btn btn-outline-dark" (click)="modal.close('Save click')">Save</button>
+            <button type="button" class="btn btn-outline-dark" (click)="modal.close('Save click')">Save</button>
             </div>
-          </ng-template>
+        </ng-template>
+
+        <ng-template #showlink let-modal>
+                <div class="modal-header">
+                    <h4 class="modal-title" id="modal-basic-title"> Match links </h4>
+                    <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+                </div>
+                <div class="modal-body">
+                    <app-link-list fixture_id="{{selected_match}}"></app-link-list>
+                </div>
+                <div class="modal-footer">
+                <button type="button" class="btn btn-outline-dark" (click)="modal.close('Save click')">Save</button>
+                </div>
+            </ng-template>
 </div>
 
 
