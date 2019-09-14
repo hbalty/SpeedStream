@@ -64,6 +64,12 @@ export class ApiGatewayService {
         }).toPromise();
     }
 
+    getFixtures() {
+        return this.httpClient.get<Fixture>(BASE_URL + 'live', {
+            headers: HEADERS
+        }).toPromise();
+    }
+
     addLink(link) {
         return this.httpClient.post(BASE_URL + '/add/link/', link, {
             headers: HEADERS

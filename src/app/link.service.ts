@@ -21,11 +21,4 @@ export class LinkService {
 
     }
 
-    getLinks(fixture_id) {
-        return this.httpClient.get<Link>(BASE_URL + '/get/link/' + fixture_id, {
-            headers: {
-                'content-type': 'application/json',
-            }
-        }).toPromise();
-    }
 }

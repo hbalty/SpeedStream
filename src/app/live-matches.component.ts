@@ -2,6 +2,7 @@ import { Component, Input } from '@angular/core';
 import { LiveService } from './live-matches.service';
 import {ActivatedRoute} from '@angular/router';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
+import { ApiGatewayService } from './api-gateway.service';
 
 @Component({
     selector: 'app-live',
@@ -11,7 +12,7 @@ import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 export class LiveComponent {
     private matches ;
     private selected_match;
-    constructor(_liveService: LiveService, private modalService: NgbModal) {
+    constructor(_liveService: ApiGatewayService, private modalService: NgbModal) {
         _liveService.getFixtures().then((fixtures) => {
             const m = Object.keys(fixtures.fixtures).map(key => fixtures.fixtures[key])
             this.matches = m ;
