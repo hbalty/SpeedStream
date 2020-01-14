@@ -1,37 +1,89 @@
-
-<button (click)="open(addArticle)"> Add article </button>
-
-<table class="table">
+<app-navbar></app-navbar>
+<div class="container">
+  <h1> Manage articles </h1>
+  <div *ngIf="message" class="alert alert-success" role="alert">
+    <h4 class="alert-heading">Well done!</h4>
+    <p> {{ message }} </p>
+    <hr>
+    <p class="mb-0">Whenever you need to, be sure to use margin utilities to keep things nice and tidy.</p>
+  </div>
+  <button data-tooltip="Add article" style="float:right; margin: 3rem;" class="btn btn-success" (click)="open(addArticle)"> + </button>
+  <table class="table">
     <tr> 
       <td> id </td>
-      <td> isLive</td>
+      <td> is live</td>
       <td> title</td>
       <td> Caption</td>
       <td> image (50x50)</td>
       <td> action </td> 
     </tr>
     <tr *ngFor="let article of news"> 
-        <td> {{ article._id }} </td>
-        <td>{{ article.isLive }}</td> 
-        <td> {{ article.title }} </td>
-        <td> {{article.caption}}</td>
-        <td> <img src="{{ article.picture_link }}" style="max-width: 50px"/> </td>
-        <td> <button type="button" class="btn btn-sm btn-danger" (click)="deleteArticle(article._id)"> delete </button> </td> 
+      <td> {{ article._id }} </td>
+      <td>{{ article.isLive }}</td> 
+      <td> {{ article.title | excerpt:15 }} </td>
+      <td> {{article.caption | excerpt:15 }}</td>
+      <td> <img src="{{ article.picture_link }}" style="max-width: 50px"/> </td>
+      <td> <button type="button" class="btn btn-sm btn-danger" style="margin-right: 2px;" (click)="deleteArticle(article._id)"> delete </button>
+        <button type="button" class="btn btn-sm btn-info" (click)="onUpdate(addArticle, article._id)"> update </button> </td> 
       </tr>
-  </table>
-
-  <ng-template #addArticle let-modal>
+    </table>
+    
+    <ng-template #addArticle let-modal>
       <div class="modal-header">
-          <h4 class="modal-title" id="modal-basic-title"> Match links </h4>
-          <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+        <h5 class="modal-title"> Add article </h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close" (click)="modal.dismiss('Cross click')">
           <span aria-hidden="true">&times;</span>
-      </button>
+        </button>
       </div>
       <div class="modal-body">
-          <app-article-add></app-article-add>
-      </div>
-      <div class="modal-footer">
-      <button type="button" class="btn btn-outline-dark" (click)="modal.close('Save click')">Save</button>
-      </div>
-  </ng-template>
-
+      <form [formGroup]="articleForm" class="needs-validation" (ngSubmit)="onSubmit()">
+        <div  class="form-group">
+          <label for="url"> Url </label>
+          <input formControlName="url" pattern="https?:\/\/(www\.)?[-a-zA-Z0-9@:%._\+~#=]{2,256}\.[a-z]{2,4}\b([-a-zA-Z0-9@:%_\+.~#?&\/\/=]*)" type="text"  class="form-control" id="url" aria-describedby="url" placeholder="Enter url" required/>
+          <small style="color: red;" *ngIf="url.invalid && (url.touched || url.dirty)"> Invalid Url </small>
+        </div>
+        <div class="form-group">
+          <label for="title">Title</label>
+          <input formControlName="title" type="text" class="form-control" id="title" placeholder="Article Title">
+          <small style="color: red;" *ngIf="title.invalid && (title.touched || title.dirty)"> Invalid title </small>
+        </div>
+        <div class="form-group">
+          <label for="source">Source</label>
+          <input formControlName="source" type="text" class="form-control" id="source" placeholder="source">
+        </div>
+        <div class="form-group">
+          <label for="pictureLink"> Picture link</label>
+          <input formControlName="picture_link" type="text" class="form-control" id="picture_link" placeholder="picture link">
+          <small style="color: red;" *ngIf="picture_link.invalid && (picture_link.touched || picture_link.dirty)"> Invalid picture link </small>
+        </div>
+        <div class="form-group">
+          <label for="language">Language</label>
+          <select class="form-control" id="language">
+            <option value="AR"> AR </option>
+            <option value="EN"> EN </option>
+            <option value="FR"> FR </option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label for="caption" > Caption </label>
+          <textarea formControlName="caption" class="form-control" id="caption" rows="3"></textarea>
+          <small style="color: red;" *ngIf="caption.invalid && (caption.touched || caption.dirty)"> Invalid caption </small>
+        </div>
+        <fieldset class="form-group">
+          <div class="form-check">
+            <label class="form-check-label">
+              <input formControlName="isLive" class="form-check-input" type="checkbox" value="" checked="">
+              Is live streaming
+            </label>
+          </div>
+        </fieldset>
+        <div class="modal-footer">
+          <button [disabled] ="articleForm.invalid" type="submit" class="btn btn-outline-dark" (click)="onSubmit($event)">Save</button>
+        </div>
+      </form>
+    </div>
+    </ng-template>
+    
+  </div>
+  
+  

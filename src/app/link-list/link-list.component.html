@@ -1,13 +1,11 @@
-<table class="table">
-    <tr> 
-      <th> bulk </th>
+<table  class="table">
+    <tr>
       <th> Id </th>
       <th> Provider </th>
       <th> Link </th>
       <th> Delete </th>
     </tr> 
     <tr *ngFor="let link of links">
-      <td> <input type="checkbox"> check </td>
       <td> {{ link._id | excerpt:5 }} </td>
       <td> {{ link.provider }} </td>
       <td> {{ link.url }}  </td>

@@ -10,22 +10,59 @@ import { ApiGatewayService } from './api-gateway.service';
 })
 export class LinkComponent {
     private fixture_id ;
-    links ;
-    constructor(private route: ActivatedRoute, _linkService: ApiGatewayService, private _clipboardService : ClipboardService){
+    links = [];
+    constructor(private route: ActivatedRoute,private _linkService: ApiGatewayService, private _clipboardService : ClipboardService){
         this.fixture_id = this.route.snapshot.paramMap.get('fixture_id');
         _linkService.getLinks(this.fixture_id).then(link => {
-            this.links = link;
-            console.log(this.links)
+            if (link.code === 200){
+                if (link.results.length > 0){
+                    this.links = link.results
+                }
+            }
+
+            if (link.code != 200){
+                this.links = null ; 
+            }
+
         }).catch(err => {
             console.log(err);
         }) ;
     }
 
 
-    redirect($event, link) {
-        location.href = link.url ;
+    reload(){
+        this._linkService.getLinks(this.fixture_id).then(links => {
+            this.links = links.results;
+            this.links.sort(function(a,b){
+                return  (b.upvotes - b.downvotes) - (a.upvotes - a.downvotes) 
+            })
+        })
     }
 
+
+    redirect($event, link) {
+        window.open('http://' + link.url)
+    }
+
+    doUpvote(link_id){
+        if (link_id) {
+            this._linkService.upvote(link_id).then(res => {
+                this.reload();
+            }).catch(err => {
+                console.log(err)
+            })
+        }
+    }
+
+    doDownvote(link_id){
+        if (link_id) {
+            this._linkService.downvote(link_id).then(res => {
+                this.reload();
+            }).catch(err => {
+                console.log(err)
+            })
+        }
+    }
 
     copyLink($event,link) {
         $event.preventDefault();

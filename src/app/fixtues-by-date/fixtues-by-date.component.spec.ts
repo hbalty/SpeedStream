@@ -1,20 +1,20 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { ArticleAddComponent } from './article-add.component';
+import { FixtuesByDateComponent } from './fixtues-by-date.component';
 
-describe('ArticleAddComponent', () => {
-  let component: ArticleAddComponent;
-  let fixture: ComponentFixture<ArticleAddComponent>;
+describe('FixtuesByDateComponent', () => {
+  let component: FixtuesByDateComponent;
+  let fixture: ComponentFixture<FixtuesByDateComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ ArticleAddComponent ]
+      declarations: [ FixtuesByDateComponent ]
     })
     .compileComponents();
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(ArticleAddComponent);
+    fixture = TestBed.createComponent(FixtuesByDateComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

@@ -13,22 +13,37 @@ import { HttpClientModule } from '@angular/common/http';
 import { ClipboardModule } from 'ngx-clipboard';
 import { LiveService } from './live-matches.service';
 import { LiveComponent } from './live-matches.component';
-import { ReactiveFormsModule } from '@angular/forms';
+import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 import { NgbModule, NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { LinkAddComponent } from './link-add/link-add.component';
 import { ApiGatewayService } from './api-gateway.service';
 import { LinkListComponent } from './link-list/link-list.component';
 import { ExerptPipe } from './exerpt.pipe';
 import { NewsComponent } from './news/news.component';
-import { ArticleAddComponent } from './article-add/article-add.component';
-
+import { HomeComponent } from './home/home.component';
+import { LoginComponent } from './login/login.component';
+import { AuthGuard } from './auth/auth.guard';
+import { JwtModule } from "@auth0/angular-jwt";
+import { NavbarComponent } from './navbar/navbar.component';
+import { FixtuesByDateComponent } from './fixtues-by-date/fixtues-by-date.component';
 
 const appRoutes: Routes = [
-  { path: 'fixture/:fixture_id', component: AppComponent },
-  { path: 'admin/live', component: LiveComponent },
-  { path: 'admin/news', component: NewsComponent },
+  { path: 'admin', component: HomeComponent, canActivate: [AuthGuard], 
+  children: [] },
+  { path: 'fixture/:fixture_id', component: AppComponent }, 
+  { path: 'admin/live', component: LiveComponent, canActivate: [AuthGuard] },
+  { path: 'admin/news', component: NewsComponent, canActivate: [AuthGuard] },
+  { path: 'admin/fixtures', component: FixtuesByDateComponent, canActivate: [AuthGuard] },
+  { path: 'login', component: LoginComponent},
   { path: '**', component: NotFoundComponent }
 ];
+
+/**
+ * JWT token getter 
+ */
+export function adminTokenGetter(){
+  return localStorage.getItem('admin_access_token');
+}
 
 @NgModule({
   declarations: [
@@ -42,16 +57,25 @@ const appRoutes: Routes = [
     LinkListComponent,
     ExerptPipe,
     NewsComponent,
-    ArticleAddComponent,
+    HomeComponent,
+    LoginComponent,
+    NavbarComponent,
+    FixtuesByDateComponent,
   ],
   imports: [
     BrowserModule,
+    FormsModule,
     AppRoutingModule,
     HttpClientModule,
     ClipboardModule,
     ReactiveFormsModule,
     NgbModule,
-    RouterModule.forRoot(appRoutes)
+    RouterModule.forRoot(appRoutes),
+    JwtModule.forRoot({
+      config: {
+        tokenGetter: adminTokenGetter,
+      }
+    })
 
   ],
   providers: [LinkService, HeaderService, LiveService, NgbModal,ApiGatewayService],

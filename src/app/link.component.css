@@ -42,7 +42,11 @@ tr {
 
 .links th{
     font-size: 10px ;
+    
+}
 
+.link-title{
+    color: #0D47A1; 
 }
 
 .links tr{
@@ -51,4 +55,21 @@ tr {
 
 a{
     color: black ;
+    padding-left: 5px;
+}
+
+
+/* some simple transitions to make the upvote and downvote
+buttons fade in as a visual cue for the user */
+
+.glyphicon {
+    opacity: 1;
+    transition: opacity .25s ease-in-out;
+    -moz-transition: opacity .25s ease-in-out;
+    -webkit-transition: opacity .25s ease-in-out;
+}
+
+.glyphicon:hover {
+    opacity: 0.75;
+    cursor: pointer;
 }

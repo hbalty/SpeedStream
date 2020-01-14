@@ -1,0 +1,74 @@
+<app-navbar></app-navbar>
+
+
+<div class="container">
+  <form style="float: right; margin: 3rem;" class="form-inline">
+    <div class="form-group">
+      <div class="input-group">
+        {{ date_struct | json}}
+        <input class="form-control" (ngModelChange)="doUpdate($event)" placeholder="yyyy-mm-dd"
+               name="dp" [(ngModel)]="date_struct" ngbDatepicker #d="ngbDatepicker">
+        <div class="input-group-append">
+          <button class="btn btn-outline-secondary" (click)="d.toggle()" type="button"> <i style="font-size: medium;" class="material-icons">
+            date_range
+            </i> </button>
+        </div>
+      </div>
+    </div>
+  </form>
+  <hr>
+  <h4> Fixtures : {{ date }}</h4>
+  <table class="table">
+      <tr> 
+          <th> id </th>
+          <th> home team </th>
+          <th> away team </th>
+          <th> elapsed </th>
+          <th> action </th> 
+      </tr>
+      <tr *ngFor="let match of fixtures">
+          <td> <a href="/fixture/{{match.fixture_id}}" target="_blank"> {{match.fixture_id }}</a> </td>
+          <td> <img *ngIf="match.homeTeam.logo" style="max-width: 20px" src="{{ match.homeTeam.logo }}"/> <br> <small> {{ match.homeTeam.team_name }} </small> </td>
+          <td> <img *ngIf="match.homeTeam.logo" style="max-width: 20px" src="{{ match.awayTeam.logo }}"/> <br> <small> {{ match.awayTeam.team_name }} </small></td>
+          <td> {{ match.elapsed }}" </td> 
+          <td> <button class="btn btn-sm btn-info" (click)="open(showlink,match.fixture_id)"> show links </button>  <button class="btn btn-sm btn-success" (click)="open(content,match.fixture_id)"> add link </button> </td>
+      </tr>
+  </table>
+
+  <ng-template #content let-modal>
+      <div class="modal-header">
+          <h4 class="modal-title" id="modal-basic-title"> Add link to match </h4>
+          <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+          <span aria-hidden="true">&times;</span>
+      </button>
+      </div>
+      <div class="modal-body">
+          <app-link-add fixture_id="{{selected_match}}"></app-link-add>
+      </div>
+  </ng-template>
+
+  <ng-template #showlink let-modal>
+          <div class="modal-header">
+              <h4 class="modal-title" id="modal-basic-title"> Match links </h4>
+              <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+              <span aria-hidden="true">&times;</span>
+          </button>
+          </div>
+          <div class="modal-body">
+              <app-link-list fixture_id="{{selected_match}}"></app-link-list>
+          </div>
+          <div class="modal-footer">
+          <button type="button" class="btn btn-outline-dark" (click)="modal.close('Save click')">Save</button>
+          </div>
+      </ng-template>
+</div>
+
+
+
+
+
+          
+
+
+
+

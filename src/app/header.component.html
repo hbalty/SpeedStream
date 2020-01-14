@@ -1,9 +1,12 @@
 <div> 
     <table class="header">
         <tr>
-            <td> <img *ngIf="homeTeamLogo" class="teamLogo" [src]="homeTeamLogo"/> </td>
-            <td> <p class="score"> {{ goalsHomeTeam }} - {{ goalsAwayTeam }} </p> </td>
-            <td><img *ngIf="homeTeamLogo" class="teamLogo" [src]="awayTeamLogo"/> </td>
+            <td colspan="3">  <img *ngIf="homeTeamLogo" class="leagueLogo" [src]="leagueLogo"/> <small class="teamName"> {{ leagueName }}</small> </td>
+        </tr>
+        <tr>
+            <td> <div class="logo-holder"> <img *ngIf="homeTeamLogo" class="teamLogo" [src]="homeTeamLogo"/> </div> </td>
+            <td> <p class="score"> {{ goalsHomeTeam }} : {{ goalsAwayTeam }} </p> </td>
+            <td> <div class="logo-holder"> <img *ngIf="homeTeamLogo" class="teamLogo" [src]="awayTeamLogo"/> </div> </td>
         </tr>
         <tr>
                 <td> </td>
@@ -12,10 +15,9 @@
         </tr>
         <tr>
                 <td>  <h3 class="teamName"> {{ homeTeamName | uppercase }} </h3> </td>
-                <td></td>
+                <td> <span> {{ elapsed }} </span>  </td>
                 <td> <h3 class="teamName"> {{ awayTeamName | uppercase}}</h3> </td>
         </tr>
     </table>
     
-    
-</div>
+</div> 

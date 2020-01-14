@@ -9,7 +9,18 @@ interface Fixture {
         awayTeamName: String;
         homeTeamName: String;
         goalsHomeTeam: String;
-        goalsAwayTeam: String
+        goalsAwayTeam: String;
+        homeTeam: {
+            team_id : String, 
+            team_name: String, 
+            logo: String
+
+        },
+        awayTeam: {
+            team_id : String, 
+            team_name: String, 
+            logo: String
+        }
         elapsed: String;
     };
 }
@@ -27,9 +38,20 @@ interface Link {
     };
 }
 
+interface Links {
+    code : number,
+    results : [
+        Link
+    ]
+}
+
+interface Response {
+    message: string, 
+    code: number
+}
 
 interface News {
-    news: [
+    articles : [
         {
             title: String;
             language: String;
@@ -48,10 +70,10 @@ interface News {
 
 const HEADERS = {
     'content-type': 'application/json',
-    'authorization': `Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1aWQiOiI1YmU1YmVlMTcyZGMwYTFlYWNlNmY3NjgiLCJpYXQiOjE1NDE3ODMyNjV9.28HNMH17Krt6of39wvKC3kD3XDA9hCWlO2HLMBlIOdE`,
+    'authorization': `Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1aWQiOiI1ZGVlYTE3Yzg4NDAxMjMzMjQ0ZjhiNDEiLCJpYXQiOjE1NzU5MTk5OTZ9.2ih3CY75Tg6rB-h2ijP8c9TLcx0FBr57OQAGZs7XJQ8`,
 };
 
-const BASE_URL = "http://192.168.0.26:3000";
+const BASE_URL = "http://192.168.0.30:3000";
 
 @Injectable()
 export class ApiGatewayService {
@@ -65,13 +87,20 @@ export class ApiGatewayService {
     }
 
     getFixtures() {
-        return this.httpClient.get<Fixture>(BASE_URL + 'live', {
+        return this.httpClient.get<Fixture>(BASE_URL + '/live', {
+            headers: HEADERS
+        }).toPromise();
+    }
+
+    getFixturesByDate(date) {
+        console.log(BASE_URL + '/fixture/date/' + date)
+        return this.httpClient.get<Response>(BASE_URL + '/fixture/date/' + date, {
             headers: HEADERS
         }).toPromise();
     }
 
     addLink(link) {
-        return this.httpClient.post(BASE_URL + '/add/link/', link, {
+        return this.httpClient.post<Response>(BASE_URL + '/add/link/', link, {
             headers: HEADERS
         }).toPromise();
     }
@@ -84,7 +113,7 @@ export class ApiGatewayService {
 
 
     getLinks(fixture_id) {
-        return this.httpClient.get<Link>(BASE_URL + '/get/link/' + fixture_id, {
+        return this.httpClient.get<Links>(BASE_URL + '/get/link/' + fixture_id, {
             headers: HEADERS
         }).toPromise();
     }
@@ -96,13 +125,38 @@ export class ApiGatewayService {
     }
 
     addArticle(article) {
-        return this.httpClient.post(BASE_URL + '/news/add', article, {
+        return this.httpClient.post<Response>(BASE_URL + '/news/add', article, {
+            headers: HEADERS
+        }).toPromise();
+    }
+
+    updateArticle(article, id) {
+        article._id = id ; 
+        return this.httpClient.post<Response>(BASE_URL + '/news/update', article, {
+            headers: HEADERS
+        }).toPromise();
+    }
+
+    getArticle(id){
+        return this.httpClient.get(BASE_URL + '/article/' + id, {
             headers: HEADERS
         }).toPromise();
     }
 
     deleteArticle(article_id) {
         return this.httpClient.get(BASE_URL + '/delete/article/' + article_id, {
+            headers: HEADERS
+        }).toPromise();
+    }
+
+    upvote(link_id){
+        return this.httpClient.get<Response>(BASE_URL + '/link/upvote/' + link_id, {
+            headers: HEADERS
+        }).toPromise();
+    }
+
+    downvote(link_id){
+        return this.httpClient.get<Response>(BASE_URL + '/link/downvote/' + link_id, {
             headers: HEADERS
         }).toPromise();
     }

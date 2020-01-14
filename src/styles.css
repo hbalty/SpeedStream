@@ -1,5 +1,12 @@
 /* You can add global styles to this file, and also import other style files */
 @import '~bootstrap/dist/css/bootstrap.min.css'; 
+@import "../node_modules/bootswatch/dist/litera/bootstrap.min.css";
+
+
+.text-ch {
+    font-family: 'Lato',Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif; 
+    font-size: 80%;
+}
 
 * {
     padding: 0; 
@@ -7,8 +14,20 @@
     box-sizing: border-box;
 }
 
-h1,h2,h4{
-    font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif
+p, h1,h2,h4{
+    font-family: 'Lato',Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif
+}
+
+.logo-holder{
+    border-radius: 50%;
+    background-color: white;
+    width: 80px;
+    height: 80px;
+    display: inline-block;
+    border: #E9EAEE 1px solid; 
+    -webkit-box-shadow: 0px 0px 20px -4px rgba(74,74,74,1);
+    -moz-box-shadow: 0px 0px 20px -4px rgba(74,74,74,1);
+    box-shadow: 0px 0px 20px -4px rgba(74,74,74,1);
 }
 
 .logo-text{
@@ -19,18 +38,23 @@ h1,h2,h4{
 }
 
 .logo{
-    max-height: 50px;
+    max-height: 30px;
     padding-top: 5px;
     padding-left: 10px;
     display: block;
 }
 
+
+.header{
+    padding: 1rem;
+    margin-top: 1rem;
+}
+
 ul{
     margin-bottom: 5px;   
 }
-.nav{
-    background-color: #EA3D3D; 
-    height: 100px;
+.red {
+    background-color: red;
 }
 html, body { height: 100%; }
 body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }

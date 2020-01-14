@@ -1,9 +1,4 @@
-<nav class="navbar navbar-toggleable-md navbar-inverse bg-inverse fixed-top">
-    <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse"  aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
-    </button>
-    <a class="navbar-brand"> Speed Goals admin</a> <br>
-</nav>
+<app-navbar></app-navbar>
 <div class="container">
         <h2> Live matches </h2>
         <table class="table">
@@ -32,9 +27,6 @@
             </div>
             <div class="modal-body">
                 <app-link-add fixture_id="{{selected_match}}"></app-link-add>
-            </div>
-            <div class="modal-footer">
-            <button type="button" class="btn btn-outline-dark" (click)="modal.close('Save click')">Save</button>
             </div>
         </ng-template>
 

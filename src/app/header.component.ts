@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, Input, OnInit ,AfterViewInit} from '@angular/core';
 import {ActivatedRoute} from '@angular/router';
 import { HeaderService } from './header.service'; 
 import { ApiGatewayService } from './api-gateway.service';
@@ -20,11 +20,11 @@ export class HeaderComponent implements OnInit{
   homeTeamName  ;
   goalsHomeTeam ;
   goalsAwayTeam  ;
+  leagueName; 
+  leagueLogo;
   elapsed ;
 
-
-
-  ngOnInit(){
+  ngAfterViewInit(){
     this.fixture_id = this.route.snapshot.paramMap.get('fixture_id'); 
     console.log(this.fixture_id)
     this.headerService.getFixture(this.fixture_id).then(data => {
@@ -35,9 +35,16 @@ export class HeaderComponent implements OnInit{
       this.awayTeamName = data.fixtures[0].awayTeam.team_name ;
       this.goalsHomeTeam = data.fixtures[0].goalsHomeTeam ;
       this.goalsAwayTeam = data.fixtures[0].goalsAwayTeam ;
+      this.leagueName = data.fixtures[0].league.name;
+      this.leagueLogo = data.fixtures[0].league.logo != null ? data.fixtures[0].league.logo : data.fixtures[0].league.flag;
+      this.elapsed = data.fixtures[0].elapsed;
     }).catch(err => {
       console.log('something went wrong')
     })
+  }
+
+  ngOnInit(){
+   
   }
 
 }

@@ -1,6 +1,4 @@
 import { Component, Input } from '@angular/core';
-import { LiveService } from './live-matches.service';
-import {ActivatedRoute} from '@angular/router';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { ApiGatewayService } from './api-gateway.service';
 
@@ -14,11 +12,10 @@ export class LiveComponent {
     private selected_match;
     constructor(_liveService: ApiGatewayService, private modalService: NgbModal) {
         _liveService.getFixtures().then((fixtures) => {
-            const m = Object.keys(fixtures.fixtures).map(key => fixtures.fixtures[key])
-            this.matches = m ;
-            console.log(m) ;
-
-        });
+            this.matches = fixtures ;
+        }).catch(err =>{
+            console.log('something went wrong')
+        })
     }
 
     open(content, selected_fixture) {
@@ -26,6 +23,7 @@ export class LiveComponent {
         this.selected_match = selected_fixture;
         this.modalService.open(content, {ariaLabelledBy: 'modal-basic-title'}).result.then((result) => {
         }, (reason) => {
+            this.modalService.dismissAll();
         });
     }
 }
